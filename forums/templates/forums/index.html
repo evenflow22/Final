@@ -1,0 +1,18 @@
+{% extends 'forums/base.html' %}
+
+{% block body %}
+
+    <ul>
+        {% for topic in object_list %}
+        <li><a href="{% url 'forums:topic' topic.id %}">{{ topic.topic_title }}</a></li>
+
+
+          {% endfor %}
+    </ul>
+            <li><a href="{% url 'forums:AddTopic-add'  %}"><h7>Start New Topic</h7></a></li>
+
+
+
+{% endblock %}
+
+
