@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import Profile, Topic, Post
+from .models import Topic, Post
 
 admin.site.register(Topic)
 admin.site.register(Post)
-admin.site.register(Profile)
+#admin.site.register(Profile)
 
 
 class TopicAdmin(admin.ModelAdmin):

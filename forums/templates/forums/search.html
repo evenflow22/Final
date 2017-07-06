@@ -1,0 +1,12 @@
+{% extends 'library/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<h1>Search</h1>
+<form action="{% url 'searchpostresults' %}" method="get">
+    <input type="text" name="post"/>
+    <input type="submit" value="search"/>
+
+
+</form>
+{% endblock %}

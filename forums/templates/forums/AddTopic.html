@@ -1,0 +1,13 @@
+{% extends 'forums/base.html' %}
+{% load staticfiles %}
+
+{% block body %}
+<h1>Post Your Hockey Topic Below</h1>
+    <form action="{% url 'forums:handle' %}" method="get">
+    <input typ="text" name="texttopic" size="60" /><br>
+    <input type="submit" value="Post"/>
+</form>
+
+
+
+{% endblock %}

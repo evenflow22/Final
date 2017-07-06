@@ -1,6 +1,13 @@
 body{
-    background: white url("images/background.jpg");
+
+    background: url("images/background.jpg");
+
+
 }
+
+ul{
+    list-style: none;
+    }
 
 .navbar{
     border-radius: 0;

@@ -1,0 +1,26 @@
+{% extends 'forums/base.html' %}
+{% load staticfiles %}
+
+
+{% block body %}
+<h1> {{ post.topic.topic_title }}</h1>
+<h3>{{ post.content }} (<i>{{ post.poster }} replies on:  {{ post.date }})</i></h3>
+
+<ul>
+        {% for r in replies %}
+
+    <li>{{ r.content }} (<i>{{ r.poster }} replies on:  {{ r.date }})</i></li>
+
+{% endfor %}
+
+
+    </ul>
+Add New Reply
+<form action = "{% url 'forums:handlereply' %}" method = "post" >
+    {% csrf_token %}
+    <textarea name="reply"></textarea><br>
+    <input type="submit" value="submit" />
+    <input type="hidden" name="my_topic" value="{{ post.topic.pk }}"/>
+    <input type="hidden" name="my_parent" value="{{ post.pk }}"/>
+</form>
+{% endblock %}

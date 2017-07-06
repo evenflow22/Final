@@ -1,6 +1,9 @@
 {% extends 'forums/base.html' %}
+{% load staticfiles %}
 
 {% block body %}
+            <a class="btn btn-success" href="{% url 'forums:AddTopic'  %}" style="margin-left:40px; margin-bottom:20px; " ><b>Start New Topic</b></a>
+
 
     <ul>
         {% for topic in object_list %}
@@ -9,7 +12,7 @@
 
           {% endfor %}
     </ul>
-            <li><a href="{% url 'forums:AddTopic-add'  %}"><h7>Start New Topic</h7></a></li>
+
 
 
 

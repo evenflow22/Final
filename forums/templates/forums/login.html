@@ -1,8 +1,10 @@
 {% extends "forums/base.html" %}
+{% load staticfiles %}
 
 
 
 {% block body %}
+
 <h1>Login to HockeyTalk</h1>
 <form id="login_form" method="post" action="{% url 'forums:login_user' %}">
     {% csrf_token %}
@@ -11,5 +13,10 @@
     Password: <input type="password" name="password" value="" size="50" />
     <br />
     <input type="submit" value="submit" />
-</form>
+</form><br><br>
+
+
+        <div style="text-align:center"><b>Would you like to be part of the Hockey Talk Community, Register here! </b><br><br>
+        <a class="btn btn-success" href="{% url 'forums:register'  %}" ><b>Register</b></a>
 {% endblock %}
+

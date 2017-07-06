@@ -6,10 +6,37 @@
 <h1>{{ topic.topic_title }}</h1>
 <ul>
         {% for post in topic.post_set.all %}
-        <li>{{ post.content }}</li>
 
+        {% if not post.parent %}
+
+        <li><details><summary><a href="{% url 'forums:post' post.id %}">{{ post.content }} ({{ post.poster }}, {{ post.date }})</a></summary>
+        <ul>
+        {% for reply in topic.post_set.all %}
+        {% if reply.parent = post %}
+            <li>{{ reply.content }} ({{ post.poster }} replies on:  {{ post.date }})</li>
+        {% endif %}
+        {% endfor %}
+        </ul>
+        {% endif %}
+</details>
+    </li>
 {% endfor %}
 
 
+
+
+
+
+
+
     </ul>
+add comment
+<form action = "{% url 'forums:newpost' %}" method="post">
+    {% csrf_token %}
+    <textarea name="newcomment" rows=6 cols=80></textarea><br>
+    <input type="submit" value="submit" />
+    <input type="hidden" name="my_topic" value="{{ topic.pk }}"/>
+
+
+</form>
 {% endblock %}

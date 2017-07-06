@@ -1,0 +1,42 @@
+{% extends 'library/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+<h1>Here is results </h1>
+
+<h2>Post Results</h2><br>
+
+{% if results %}
+<ul>
+{% for post in results %}
+<li>{{ topic.topic_title }}</li>
+
+
+{% endfor %}
+</ul>
+
+{% endif %}
+
+{% if results3 %}
+<ul>
+{% for book in results3 %}
+<li>{{ book.book_title }} {{ book.ISBN }}</li>
+
+
+{% endfor %}
+</ul>
+{% endif %}
+<h2>DVD Results</h2><br>
+
+{% if results2 %}
+
+<ul></ul>
+{% for dvd in results2 %}
+<li>{{ dvd.dvd_title }}</li>
+
+
+{% endfor %}
+{% endif %}
+
+{% endblock %}

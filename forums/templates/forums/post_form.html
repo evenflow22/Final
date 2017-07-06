@@ -1,6 +1,6 @@
 {% extends 'forums/base.html' %}
 {% load staticfiles %}
-{% block title %}Make New Account{% endblock %}
+{% block title %}Create a Post{% endblock %}
 
 
 {% block body %}
@@ -9,8 +9,8 @@
 
         <div class="row">
 
-            <div class="col-sm-12 col-md-7">
-                <div class="panel panel-default">
+            <div class="col-sm-40 col-md-40">
+                <div class="panel panel-large">
                     <div class="panel-body">
 
                         <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
@@ -18,7 +18,7 @@
                             {% include 'forums/form-template.html' %}
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="Submit" class="btn btn-success">AddTopic</button>
+                                    <button type="Submit" class="btn btn-success">PostTopic</button>
                                 </div>
                             </div>
                         </form>

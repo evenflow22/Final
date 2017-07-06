@@ -4,8 +4,12 @@
     <meta charset="UTF-8" />
     <title>Forum</title>
     {% load staticfiles %}
-    <link rel="stylesheet" type="text/css" href="{% static 'forums/style.css' %}" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="{% static 'forums/style.css' %}" />
+    <style>ul{list-style: none;}
+            body{padding:3em;}
+            .button{display:inline-block; border: 1px solid #000000;}</style>
+
 </head>
 <body>
     <nav class="navbar navbar-default">
@@ -19,13 +23,14 @@
          <div class="form-group">
              <input type="text" class="form-control" name="q" value="">
         </div><!--  close form-group-->
-            <button type="submit" class="btn btn-default">Search</button>
+                <a href="{% url 'forums:search' %}"> <button type="submit" class="btn btn-default">Search</button></a>
             </form>
 
         <ul class="nav navbar-nav navbar-right">
+            <li><a href="{% url 'forums:register' %}"> Register</a></li>
             <li><a href="{% url 'forums:login_user' %}">Login</a></li>
             <li class="">
-                <a href="#">
+                <a href="{% url 'forums:user_logout' %}">
                     <span class="glyphicon glyphicon-forums" aria-hidden="True"></span>&nbsp; Logout
                 </a>
             </li>
