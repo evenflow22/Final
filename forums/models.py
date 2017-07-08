@@ -33,6 +33,7 @@ class Post(models.Model):
     date = models.DateTimeField(auto_now_add=True, null=True)
     content = models.TextField(validators=[MaxLengthValidator(200000)], null=True)
     parent = models.ForeignKey("self", blank=True, null=True)
+    image = models.FileField(null=True)
 
 
 

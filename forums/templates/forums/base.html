@@ -18,12 +18,12 @@
         <!-- Logo -->
         <div class="navbar-header">
             <a class="navbar-brand" href="{% url 'forums:index' %}">Forum</a>
-
+        </div>
             <form class="navbar-form navbar-left"  method="get" action="{% url 'forums:search' %}">
                 {% csrf_token %}
-         <div class="form-group">
-             <input type="text" class="form-control" name="q" value="">
-        </div><!--  close form-group-->
+            <div class="form-group">
+                 <input type="text" class="form-control" name="q" value="">
+            </div><!--  close form-group-->
                 <button type="submit" class="btn btn-default">Search</button>
             </form>
 
@@ -32,14 +32,13 @@
             <li><a href="{% url 'forums:login_user' %}">Login</a></li>
             <li class="">
                 <a href="{% url 'forums:user_logout' %}">
-                    <span class="glyphicon glyphicon-forums" aria-hidden="True"></span>&nbsp; Logout
+                    <span class="glyphicon glyphicon-flash" aria-hidden="True"></span>&nbsp; Logout
                 </a>
             </li>
 
         </ul>
 
-        </div><!-- close navbar header -->
-     </div><!-- clsoe fluid  -->
+     </div><!-- close fluid  -->
 </nav>
 {% block body %}
 

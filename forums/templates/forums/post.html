@@ -19,8 +19,11 @@ Add New Reply
 <form action = "{% url 'forums:handlereply' %}" method = "post" >
     {% csrf_token %}
     <textarea rows="6" cols="80" name="reply"></textarea><br>
+    <input type="file" name="uploadfile" />
     <input type="submit" value="submit" />
     <input type="hidden" name="my_topic" value="{{ post.topic.pk }}"/>
     <input type="hidden" name="my_parent" value="{{ post.pk }}"/>
+
 </form>
+
 {% endblock %}

@@ -7,6 +7,7 @@ from django.views.generic import View
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.core.urlresolvers import reverse_lazy
+from django.core.files.storage import FileSystemStorage
 from .forms import UserForm
 from django.contrib.auth import logout
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -19,7 +20,7 @@ def handle(request):
     my_topic = Topic(topic_title=topic, topic_poster=my_user)
     my_topic.save()
     context_dict = {"topic": my_topic}
-    return render(request, 'forums/handle.html', context_dict)
+    return render(request, 'forums/topic_page.html', context_dict)
 
 
 def AddTopic(request):
@@ -80,13 +81,17 @@ def newpost(request):
     newcomment_content = request.POST.get('newcomment')
     my_user = request.user
     mytopic_id = request.POST.get('my_topic', "")
+    #myfile = request.POST.get('uploadfile', "")
+    fs = FileSystemStorage()
+    myfile = request.FILES['uploadfile']
+    filename = fs.save(myfile.name, myfile)
+    uploaded_file_url = fs.url(filename)
     my_topic = Topic.objects.get(pk=mytopic_id)
-    mypost = Post(topic=my_topic, poster=my_user, content=newcomment_content)
+    mypost = Post(topic=my_topic, poster=my_user, content=newcomment_content, image=myfile)
     mypost.save()
     context_dict = {"topic": my_topic}
-    #return render(request, 'forums/handlesnewpost.html', context_dict)
     return HttpResponseRedirect(reverse('forums:topic', kwargs={'pk': mytopic_id}))
-    #return HttpResponseRedirect(reverse('forums:index'))
+
 
 
 
