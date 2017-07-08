@@ -10,6 +10,7 @@ from django.core.urlresolvers import reverse_lazy
 from .forms import UserForm
 from django.contrib.auth import logout
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 
 
 def handle(request):
@@ -38,6 +39,7 @@ def post(request, post_id):
     context_dict = {'post': Post.objects.get(pk=post_id), 'replies': replies}
     return render(request, 'forums/post.html', context_dict)
 
+
 def handlereply(request):
     newcomment_content = request.POST.get('reply')
     my_user = request.user
@@ -48,6 +50,7 @@ def handlereply(request):
     mypost = Post(topic=my_topic, poster=my_user, content=newcomment_content, parent=parentpost)
     mypost.save()
     return HttpResponseRedirect(reverse('forums:topic', kwargs={'pk': mytopic_id}))
+
 
 
 
@@ -156,10 +159,16 @@ def user_logout(request):
 
 
 def search(request):
-    context_dict = {}
+    search = request.GET.get('q', "")
+    results = Topic.objects.filter(Q(topic_title__icontains=search))
+    results2 = Post.objects.filter(Q(content__icontains=search))
+    context_dict = {'results': results, 'results2': results2}
     return render(request, 'forums/search.html', context_dict)
 
+
 def searchpostresults(request):
-    search = request.GET.get('post',"")
-    context_dict = {'results': Post.objects.filter(Topic=search)}
+    search = request.GET.get('post', "")
+    context_dict = {'results': Post.objects.filter(topic=search),
+                    'results2': Post.objects.filter(content=search),
+                    }
     return render(request, 'forums/searchpostresults.html', context_dict)

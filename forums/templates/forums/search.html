@@ -1,12 +1,26 @@
-{% extends 'library/base.html' %}
+{% extends 'forums/base.html' %}
 {% load staticfiles %}
 
-{% block content %}
-<h1>Search</h1>
-<form action="{% url 'searchpostresults' %}" method="get">
-    <input type="text" name="post"/>
-    <input type="submit" value="search"/>
+{% block body %}
+
+<h1>Search Results</h1>
+
+   <ul>
+        {% for topic in results %}
+        <li><a href="{% url 'forums:topic' topic.id %}">{{ topic.topic_title }}</a></li>
 
 
-</form>
+          {% endfor %}
+    </ul>
+
+   <ul>
+        {% for post in results2 %}
+        <li><a href="{% url 'forums:post' post.id %}">{{ post.content }} (<i> {{ post.poster }} replies on:  {{ post.date }})</i></a></li>
+
+
+          {% endfor %}
+    </ul>
+
+
+
 {% endblock %}
