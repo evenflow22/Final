@@ -33,7 +33,7 @@
 
 
     </ul>
-add comment
+Add Comment
 <form action = "{% url 'forums:newpost' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <textarea name="newcomment" rows=6 cols=80></textarea><br>

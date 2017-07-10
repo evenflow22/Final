@@ -7,17 +7,18 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="{% static 'forums/style.css' %}" />
     <style>ul{list-style: none;}
-            body{padding:3em;}
-            .button{display:inline-block; border: 1px solid #000000;}</style>
+            body{padding:3em; color:orange;}
+            .button{display:inline-block; border: 1px solid #000000;}
+            input [type=text]{color:black}
+    </style>
 
 </head>
 <body>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
-
         <!-- Logo -->
         <div class="navbar-header">
-            <a class="navbar-brand" href="{% url 'forums:index' %}">Forum</a>
+            <a class="navbar-brand" href="{% url 'forums:index' %}">HockeyTalk</a>
         </div>
             <form class="navbar-form navbar-left"  method="get" action="{% url 'forums:search' %}">
                 {% csrf_token %}

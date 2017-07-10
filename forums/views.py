@@ -83,13 +83,18 @@ def newpost(request):
     mytopic_id = request.POST.get('my_topic', "")
     #myfile = request.POST.get('uploadfile', "")
     fs = FileSystemStorage()
-    myfile = request.FILES['uploadfile']
-    filename = fs.save(myfile.name, myfile)
-    uploaded_file_url = fs.url(filename)
-    my_topic = Topic.objects.get(pk=mytopic_id)
-    mypost = Post(topic=my_topic, poster=my_user, content=newcomment_content, image=myfile)
-    mypost.save()
-    context_dict = {"topic": my_topic}
+    if len(request.FILES) != 0:
+        myfile = request.FILES['uploadfile']
+        filename = fs.save(myfile.name, myfile)
+        uploaded_file_url = fs.url(filename)
+        my_topic = Topic.objects.get(pk=mytopic_id)
+        mypost = Post(topic=my_topic, poster=my_user, content=newcomment_content, image=myfile)
+        mypost.save()
+    else:
+        my_topic = Topic.objects.get(pk=mytopic_id)
+        mypost = Post(topic=my_topic, poster=my_user, content=newcomment_content)
+        mypost.save()
+        context_dict = {"topic": my_topic}
     return HttpResponseRedirect(reverse('forums:topic', kwargs={'pk': mytopic_id}))
 
 
