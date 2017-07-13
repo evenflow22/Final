@@ -36,7 +36,7 @@
 Add Comment
 <form action = "{% url 'forums:newpost' %}" method="post" enctype="multipart/form-data"><br>
     {% csrf_token %}
-    <textarea name="newcomment" rows=6 cols=80></textarea><br><br>
+    <textarea name="newcomment" rows=6 cols=80></textarea><br>
     <input type="file" name="uploadfile"/><br>
     <input type="submit" value="submit" />
     <input type="hidden" name="my_topic" value="{{ topic.pk }}"/>
